@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="main_padding">12dp</dimen>
+    <dimen name="bigpadding">28dp</dimen>
+    <dimen name="min_padding">4dp</dimen>
+
+    <dimen name="tv_title_city">24sp</dimen>
+    <dimen name="tv_title">16sp</dimen>
+    <dimen name="tv_weather">24sp</dimen>
+    <dimen name="tv_update">12sp</dimen>
+    <dimen name="tv_temperature">80sp</dimen>
+    <dimen name="tv_standard">16sp</dimen>
+
+    <dimen name="line">1dp</dimen>
+
+    //btn
+    <dimen name="btn_transparent_stroke">5dp</dimen>
+    <dimen name="btn_radius">14dp</dimen>
+</resources>

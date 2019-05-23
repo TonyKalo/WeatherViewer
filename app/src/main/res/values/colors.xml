@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0754d4</color>
+    <color name="colorPrimaryDark">#023683</color>
+    <color name="colorAccent">#00BCD4</color>
+
+    //Txt
+    <color name="txt_white">#FFFFFF</color>
+    <color name="txt_grey">#B9B9B9</color>
+
+    //Background
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_white_transparent">#7EFFFFFF</color>
+
+    //Btn
+    //transparent
+    <color name="btn_disabled">#7E535353</color>
+    <color name="btn_main">#FFFFFF</color>
+    <color name="btn_main_pressed">#7EAFAFAF</color>
+    <color name="btn_trans_background">#00AFAFAF</color>
+
+</resources>

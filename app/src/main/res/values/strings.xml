@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">WeatherViewer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="london">London</string>
+    <string name="berlin">Berlin</string>
+    <string name="amsterdam">Amsterdam</string>
+    <string name="paris">Paris</string>
+    <string name="temp_range">0\u00B0</string>
+    <string name="humidity_title">Humidity: </string>
+    <string name="humidity">%</string>
+    <string name="pressure_title">Pressure:</string>
+    <string name="pressure">%</string>
+    <string name="wind_speed_title">Wind speed:</string>
+    <string name="wind_speed">%</string>
+    <string name="weatherMain">Weather</string>
+    <string name="sunrise_title">Sunrise: </string>
+    <string name="sunrise">%</string>
+    <string name="sunset_title">Sunset:</string>
+    <string name="sunset">%</string>
+    <string name="time">Last updated:</string>
+    <string name="details">DETAILS</string>
+    <string name="min_max_temp">%</string>
+
+    <string name="loading">Loading</string>
+
+    //units
+    <string name="C">\u00B0</string>
+    <string name="percent">%</string>
+    <string name="hpa">hPa</string>
+    <string name="wind_unit">m/s</string>
+
+    //errors
+    <string name="err_no_net">No Internet Connection</string>
+    <string name="err_unauthorised">Unauthorised</string>
+    <string name="err_forbiden">Forbidden</string>
+    <string name="err_internal_server">Internal Server Error</string>
+    <string name="err_bad_request">Bad Request</string>
+    <string name="err_glide">Error while loading icon</string>
+    <string name="err_not_responding">Something Went Wrong API is not responding properly!</string>
+
+
+</resources>
