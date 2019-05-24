@@ -2,6 +2,7 @@ package androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -37,6 +38,7 @@ import butterknife.ButterKnife;
 public class WeatherFragment extends BaseFragment implements WeatherMvpView, SwipeRefreshLayout.OnRefreshListener, RequestListener<Drawable> {
 
 
+    
     WeatherMvpPresenter<WeatherMvpView> presenter;
     @Inject
     @DateTimeFormat
@@ -85,7 +87,7 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpView, Swi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_weather_main, container, false);
         setRetainInstance(true);
@@ -114,11 +116,11 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpView, Swi
     public void updateValues(WeatherMainInfo weatherMainInfo) {
         if(isAdded()) {
             tvCityTitle.setText(weatherMainInfo.getCity());
-            String c = getActivity().getResources().getString(R.string.C);
+            String c = getResources().getString(R.string.C);
             tvWeather.setText(weatherMainInfo.getDescription());
-            String tempRange = String.valueOf(Math.round(weatherMainInfo.getTempNow())) + c;
+            String tempRange = Math.round(weatherMainInfo.getTempNow()) + c;
             tvTempRange.setText(tempRange);
-            String minMax = String.valueOf(Math.round(weatherMainInfo.getMinTemp())) + c + "/" + String.valueOf(Math.round(weatherMainInfo.getMaxTemp()) + c);
+            String minMax = Math.round(weatherMainInfo.getMinTemp()) + c + "/" + Math.round(weatherMainInfo.getMaxTemp()) + c;
             tvMinMax.setText(minMax);
             String hum = weatherMainInfo.getHumidity() + " " + getResources().getString(R.string.percent);
             tvHumidity.setText(hum);
@@ -148,7 +150,8 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpView, Swi
 
     @Override
     public void hideSwipeLoading() {
-        if(swipeLoading!=null&&swipeLoading.isShown()) {
+
+        if(swipeLoading!=null) {
             swipeLoading.setRefreshing(false);
         }
     }
@@ -179,5 +182,14 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpView, Swi
     @Override
     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
         return false;
+    }
+
+
+  
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        hideSwipeLoading();
     }
 }

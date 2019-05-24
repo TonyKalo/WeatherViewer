@@ -16,10 +16,10 @@ import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMv
 public class CustomPagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
-    public static final int FRAGMENT_LONDON=0;
-    public static final int FRAGMENT_BERLIN=1;
-    public static final int FRAGMENT_PARIS=2;
-    public static final int FRAGMENT_AMSTERDAM=3;
+    static final int FRAGMENT_LONDON=0;
+    static final int FRAGMENT_BERLIN=1;
+    static final int FRAGMENT_PARIS=2;
+    static final int FRAGMENT_AMSTERDAM=3;
 
     private final int FRAGMENT_COUNT = 4;
 
@@ -39,7 +39,6 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        Log.d("TAG", "getItemAdapter: ");
         switch (i){
             case 0:
                 WeatherFragment londonFragment = WeatherFragment.newInstance();
