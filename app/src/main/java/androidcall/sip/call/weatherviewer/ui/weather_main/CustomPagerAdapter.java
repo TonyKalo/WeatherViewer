@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+
 
 import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherFragment;
 import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpPresenter;
@@ -37,6 +39,7 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
+        Log.d("TAG", "getItemAdapter: ");
         switch (i){
             case 0:
                 WeatherFragment londonFragment = WeatherFragment.newInstance();

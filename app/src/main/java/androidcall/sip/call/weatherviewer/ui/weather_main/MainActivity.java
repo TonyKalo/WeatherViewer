@@ -3,6 +3,7 @@ package androidcall.sip.call.weatherviewer.ui.weather_main;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -31,11 +32,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
+        getActivityComponent().inject(this);
         presenter.onAttach(this);
         setUp();
+
     }
 
     @Override

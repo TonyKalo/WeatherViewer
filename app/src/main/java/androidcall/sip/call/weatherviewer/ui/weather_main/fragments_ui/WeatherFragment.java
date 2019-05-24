@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,8 +88,7 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpView, Swi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_weather_main, container, false);
-
-
+        setRetainInstance(true);
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);

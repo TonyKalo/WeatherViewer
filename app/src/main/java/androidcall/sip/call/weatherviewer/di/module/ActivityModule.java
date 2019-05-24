@@ -8,6 +8,8 @@ import android.os.Handler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.inject.Singleton;
+
 import androidcall.sip.call.weatherviewer.di.qualifiers.ActivityContext;
 import androidcall.sip.call.weatherviewer.di.qualifiers.AmsterdamPresenter;
 import androidcall.sip.call.weatherviewer.di.qualifiers.BerlinPresenter;
@@ -61,6 +63,7 @@ public class ActivityModule {
     }
 
     @Provides
+
     CustomPagerAdapter provideCustomPagerAdapter(AppCompatActivity appCompatActivity,
                                                  @LondonPresenter WeatherMvpPresenter<WeatherMvpView> londonPresenter,
                                                  @BerlinPresenter WeatherMvpPresenter<WeatherMvpView> berlinPresenter,
