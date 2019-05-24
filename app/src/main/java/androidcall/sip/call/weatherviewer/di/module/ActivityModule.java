@@ -61,8 +61,12 @@ public class ActivityModule {
     }
 
     @Provides
-    CustomPagerAdapter provideCustomPagerAdapter(AppCompatActivity appCompatActivity){
-        return new CustomPagerAdapter(appCompatActivity.getSupportFragmentManager());
+    CustomPagerAdapter provideCustomPagerAdapter(AppCompatActivity appCompatActivity,
+                                                 @LondonPresenter WeatherMvpPresenter<WeatherMvpView> londonPresenter,
+                                                 @BerlinPresenter WeatherMvpPresenter<WeatherMvpView> berlinPresenter,
+                                                 @ParisPresenter WeatherMvpPresenter<WeatherMvpView> parisPresenter,
+                                                 @AmsterdamPresenter  WeatherMvpPresenter<WeatherMvpView>amsterdamPresenter){
+        return new CustomPagerAdapter(appCompatActivity.getSupportFragmentManager(),londonPresenter,berlinPresenter,parisPresenter,amsterdamPresenter);
     }
 
     @Provides

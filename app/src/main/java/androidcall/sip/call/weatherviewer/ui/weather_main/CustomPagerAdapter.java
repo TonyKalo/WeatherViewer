@@ -6,10 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.amsterdam.AmsterdamWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.berlin.BerlinWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.london.LondonWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.paris.ParisWeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpPresenter;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpView;
+
 
 public class CustomPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,8 +21,17 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
 
     private final int FRAGMENT_COUNT = 4;
 
-    public CustomPagerAdapter(FragmentManager fm) {
+    private WeatherMvpPresenter<WeatherMvpView> londonPresenter;
+    private WeatherMvpPresenter<WeatherMvpView> berlinPresenter;
+    private WeatherMvpPresenter<WeatherMvpView> parisPresenter;
+    private WeatherMvpPresenter<WeatherMvpView> amsterdamPresenter;
+
+    public CustomPagerAdapter(FragmentManager fm, WeatherMvpPresenter<WeatherMvpView> londonPresenter,WeatherMvpPresenter<WeatherMvpView> berlinPresenter,WeatherMvpPresenter<WeatherMvpView> parisPresenter,WeatherMvpPresenter<WeatherMvpView> amsterdamPresenter) {
         super(fm);
+        this.londonPresenter=londonPresenter;
+        this.berlinPresenter=berlinPresenter;
+        this.parisPresenter=parisPresenter;
+        this.amsterdamPresenter=amsterdamPresenter;
     }
 
 
@@ -30,13 +39,21 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i){
             case 0:
-                return LondonWeatherFragment.newInstance();
+                WeatherFragment londonFragment = WeatherFragment.newInstance();
+                londonFragment.setPresenter(londonPresenter);
+                return londonFragment;
             case 1:
-                return BerlinWeatherFragment.newInstance();
+                WeatherFragment berlinFragment= WeatherFragment.newInstance();
+                berlinFragment.setPresenter(berlinPresenter);
+                return berlinFragment;
             case 2:
-                return ParisWeatherFragment.newInstance();
+                WeatherFragment parisFragment= WeatherFragment.newInstance();
+                parisFragment.setPresenter(parisPresenter);
+                return parisFragment;
             case 3:
-                return AmsterdamWeatherFragment.newInstance();
+                WeatherFragment amsterdamFragment= WeatherFragment.newInstance();
+                amsterdamFragment.setPresenter(amsterdamPresenter);
+                return amsterdamFragment;
         }
         return null;
     }
