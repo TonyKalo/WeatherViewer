@@ -1,8 +1,6 @@
-package androidcall.sip.call.weatherviewer.ui.weather_main.amsterdam;
+package androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui;
 
 import android.os.Handler;
-
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -10,24 +8,27 @@ import androidcall.sip.call.weatherviewer.data.DataManager;
 import androidcall.sip.call.weatherviewer.data.db.model.WeatherMainInfo;
 import androidcall.sip.call.weatherviewer.data.network.pojo.weather.WeatherMain;
 import androidcall.sip.call.weatherviewer.ui.base.BasePresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpView;
 import androidcall.sip.call.weatherviewer.util.AppConstants;
 import androidcall.sip.call.weatherviewer.util.WeatherHelper;
 import androidcall.sip.call.weatherviewer.util.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
-public class AmsterdamWeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V> implements WeatherMvpPresenter<V>,Runnable {
+public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V> implements WeatherMvpPresenter<V>,Runnable {
 
     private Handler handler;
+    private String city;
 
 
     @Inject
-    public AmsterdamWeatherPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, Handler handler) {
+    public WeatherPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, Handler handler) {
         super(dataManager, schedulerProvider, compositeDisposable);
         this.handler=handler;
 
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
@@ -44,16 +45,16 @@ public class AmsterdamWeatherPresenter<V extends WeatherMvpView> extends BasePre
 
     @Override
     public void onViewCreated() {
-        WeatherMainInfo weatherMainInfo = getDataManager().getWeatherByCityFromDb("Amsterdam");
+        WeatherMainInfo weatherMainInfo = getDataManager().getWeatherByCityFromDb(city);
         if(weatherMainInfo!=null){
             getView().updateValues(weatherMainInfo);
         }
     }
 
-    private void getLondonData(){
+    private void getWeatherCityData(){
         getView().showSwipeLoading();
 
-        getCompositeDisposable().add(getDataManager().getWeather("Amsterdam",AppConstants.MAIN_UNIT, AppConstants.APPID).
+        getCompositeDisposable().add(getDataManager().getWeather(city,AppConstants.MAIN_UNIT, AppConstants.APPID).
                 subscribeOn(getSchedulerProvider().io()).
                 observeOn(getSchedulerProvider().ui()).
                 subscribe(new Consumer<WeatherMain>() {
@@ -88,7 +89,8 @@ public class AmsterdamWeatherPresenter<V extends WeatherMvpView> extends BasePre
 
     @Override
     public void run() {
-        getLondonData();
+        getWeatherCityData();
+
         handler.postDelayed(this,AppConstants.TWO_MINUTES);
     }
 }

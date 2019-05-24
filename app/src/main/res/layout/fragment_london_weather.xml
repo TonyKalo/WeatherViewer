@@ -5,7 +5,7 @@
     android:id="@+id/swipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.weather_main.london.LondonWeatherFragment">
+    tools:context=".ui.weather_main.fragments_ui.london.LondonWeatherFragment">
 
     <ScrollView
         android:id="@+id/scroll"

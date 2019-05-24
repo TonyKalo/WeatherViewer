@@ -6,10 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import androidcall.sip.call.weatherviewer.ui.weather_main.amsterdam.AmsterdamWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.berlin.BerlinWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.london.LondonWeatherFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.paris.ParisWeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.amsterdam.AmsterdamWeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.berlin.BerlinWeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.london.LondonWeatherFragment;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.paris.ParisWeatherFragment;
 
 public class CustomPagerAdapter extends FragmentPagerAdapter {
 

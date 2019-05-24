@@ -1,4 +1,4 @@
-package androidcall.sip.call.weatherviewer.ui.weather_main.paris;
+package androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.amsterdam;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,31 +17,28 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
 
 import androidcall.sip.call.weatherviewer.R;
 import androidcall.sip.call.weatherviewer.data.db.model.WeatherMainInfo;
-import androidcall.sip.call.weatherviewer.data.network.pojo.weather.WeatherMain;
 import androidcall.sip.call.weatherviewer.di.component.ActivityComponent;
+import androidcall.sip.call.weatherviewer.di.qualifiers.AmsterdamPresenter;
 import androidcall.sip.call.weatherviewer.di.qualifiers.DateTimeFormat;
-import androidcall.sip.call.weatherviewer.di.qualifiers.LondonPresenter;
-import androidcall.sip.call.weatherviewer.di.qualifiers.ParisPresenter;
 import androidcall.sip.call.weatherviewer.di.qualifiers.TimeFormat;
 import androidcall.sip.call.weatherviewer.ui.base.BaseFragment;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpView;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpPresenter;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpView;
 import androidcall.sip.call.weatherviewer.util.AppConstants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ParisWeatherFragment extends BaseFragment implements WeatherMvpView, SwipeRefreshLayout.OnRefreshListener, RequestListener<Drawable> {
+public class AmsterdamWeatherFragment extends BaseFragment implements WeatherMvpView, SwipeRefreshLayout.OnRefreshListener, RequestListener<Drawable> {
 
     @Inject
-    @ParisPresenter
+    @AmsterdamPresenter
     WeatherMvpPresenter<WeatherMvpView> presenter;
     @Inject
     @DateTimeFormat
@@ -74,8 +71,8 @@ public class ParisWeatherFragment extends BaseFragment implements WeatherMvpView
     @BindView(R.id.weather_image)
     ImageView ivIcon;
 
-    public static ParisWeatherFragment newInstance() {
-        ParisWeatherFragment fragment = new ParisWeatherFragment();
+    public static AmsterdamWeatherFragment newInstance() {
+        AmsterdamWeatherFragment fragment = new AmsterdamWeatherFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -85,7 +82,7 @@ public class ParisWeatherFragment extends BaseFragment implements WeatherMvpView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_paris_weather, container, false);
+        View v = inflater.inflate(R.layout.fragment_amsterdam_weather, container, false);
 
         ActivityComponent component = getActivityComponent();
         if (component != null) {
@@ -111,7 +108,7 @@ public class ParisWeatherFragment extends BaseFragment implements WeatherMvpView
     @Override
     public void updateValues(WeatherMainInfo weatherMainInfo) {
         if(isAdded()) {
-            String c = getResources().getString(R.string.C);
+            String c = getActivity().getResources().getString(R.string.C);
             tvWeather.setText(weatherMainInfo.getDescription());
             String tempRange = String.valueOf(Math.round(weatherMainInfo.getTempNow())) + c;
             tvTempRange.setText(tempRange);

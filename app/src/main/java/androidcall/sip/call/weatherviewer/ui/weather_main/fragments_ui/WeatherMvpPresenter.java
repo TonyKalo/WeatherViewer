@@ -1,4 +1,4 @@
-package androidcall.sip.call.weatherviewer.ui.weather_main;
+package androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui;
 
 import androidcall.sip.call.weatherviewer.ui.base.MvpPresenter;
 

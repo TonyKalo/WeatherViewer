@@ -8,7 +8,6 @@ import android.os.Handler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import androidcall.sip.call.weatherviewer.data.db.model.WeatherMainInfo;
 import androidcall.sip.call.weatherviewer.di.qualifiers.ActivityContext;
 import androidcall.sip.call.weatherviewer.di.qualifiers.AmsterdamPresenter;
 import androidcall.sip.call.weatherviewer.di.qualifiers.BerlinPresenter;
@@ -21,12 +20,9 @@ import androidcall.sip.call.weatherviewer.ui.weather_main.CustomPagerAdapter;
 import androidcall.sip.call.weatherviewer.ui.weather_main.MainMvpPresenter;
 import androidcall.sip.call.weatherviewer.ui.weather_main.MainMvpView;
 import androidcall.sip.call.weatherviewer.ui.weather_main.MainPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.WeatherMvpView;
-import androidcall.sip.call.weatherviewer.ui.weather_main.amsterdam.AmsterdamWeatherPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.berlin.BerlinWeatherPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.london.LondonWeatherPresenter;
-import androidcall.sip.call.weatherviewer.ui.weather_main.paris.ParisWeatherPresenter;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpPresenter;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherMvpView;
+import androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui.WeatherPresenter;
 import androidcall.sip.call.weatherviewer.util.AppConstants;
 import androidcall.sip.call.weatherviewer.util.rx.AppSchedulerProvider;
 import androidcall.sip.call.weatherviewer.util.rx.SchedulerProvider;
@@ -77,25 +73,29 @@ public class ActivityModule {
 
     @Provides
     @LondonPresenter
-    WeatherMvpPresenter<WeatherMvpView> provideLondonWeatherMvpPresenter(LondonWeatherPresenter<WeatherMvpView> presenter){
+    WeatherMvpPresenter<WeatherMvpView> provideLondonWeatherMvpPresenter(WeatherPresenter<WeatherMvpView> presenter){
+        presenter.setCity(AppConstants.LONDON);
         return presenter;
     }
 
     @Provides
     @AmsterdamPresenter
-    WeatherMvpPresenter<WeatherMvpView> provideAmsterdamWeatherMvpPresenter(AmsterdamWeatherPresenter<WeatherMvpView> presenter){
+    WeatherMvpPresenter<WeatherMvpView> provideAmsterdamWeatherMvpPresenter(WeatherPresenter<WeatherMvpView> presenter){
+        presenter.setCity(AppConstants.AMSTERDAM);
         return presenter;
     }
 
     @Provides
     @BerlinPresenter
-    WeatherMvpPresenter<WeatherMvpView> provideBerlinWeatherMvpPresenter(BerlinWeatherPresenter<WeatherMvpView> presenter){
+    WeatherMvpPresenter<WeatherMvpView> provideBerlinWeatherMvpPresenter(WeatherPresenter<WeatherMvpView> presenter){
+        presenter.setCity(AppConstants.BERLIN);
         return presenter;
     }
 
     @Provides
     @ParisPresenter
-    WeatherMvpPresenter<WeatherMvpView> provideParisnWeatherMvpPresenter(ParisWeatherPresenter<WeatherMvpView> presenter){
+    WeatherMvpPresenter<WeatherMvpView> provideParisnWeatherMvpPresenter(WeatherPresenter<WeatherMvpView> presenter){
+        presenter.setCity(AppConstants.PARIS);
         return presenter;
     }
 
@@ -105,8 +105,6 @@ public class ActivityModule {
         return new Handler();
 
     }
-
-
 
     @Provides
     @DateTimeFormat
@@ -124,6 +122,8 @@ public class ActivityModule {
     Date provideDate(){
        return new Date();
     }
+
+
 
 
 }

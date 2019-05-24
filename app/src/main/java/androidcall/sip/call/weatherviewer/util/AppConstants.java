@@ -24,4 +24,11 @@ public interface AppConstants {
     public static final String DATE_TIME_FORMAT ="dd/MM  HH:mm";
     public static final String TIME_FORMAT ="HH:mm";
 
+    //WeatherPresenterCallStrings
+    public static final String PARIS ="Paris";
+    public static final String AMSTERDAM ="Amsterdam";
+    public static final String BERLIN ="Berlin";
+    public static final String LONDON ="London";
+
+
 }
