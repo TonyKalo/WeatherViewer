@@ -1,6 +1,7 @@
 package androidcall.sip.call.weatherviewer.ui.weather_main.fragments_ui;
 
 import android.os.Handler;
+import android.util.Log;
 
 import javax.inject.Inject;
 
@@ -18,6 +19,7 @@ public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V>
 
     private Handler handler;
     private String city;
+    private boolean firstLoading = false;
 
 
     @Inject
@@ -33,6 +35,8 @@ public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V>
 
     @Override
     public void onFragmentVisible() {
+
+        firstLoading = true;
         handler.removeCallbacks(this);
         handler.post(this);
 
@@ -41,6 +45,7 @@ public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V>
     @Override
     public void onFragmentInvisible() {
         handler.removeCallbacks(this);
+        firstLoading = false;
     }
 
     @Override
@@ -52,8 +57,8 @@ public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V>
     }
 
     private void getWeatherCityData(){
-        getView().showSwipeLoading();
 
+        showLoading();
         getCompositeDisposable().add(getDataManager().getWeather(city,AppConstants.MAIN_UNIT, AppConstants.APPID).
                 subscribeOn(getSchedulerProvider().io()).
                 observeOn(getSchedulerProvider().ui()).
@@ -85,6 +90,15 @@ public class WeatherPresenter<V extends WeatherMvpView> extends BasePresenter<V>
                     }
                 }));
 
+    }
+
+    private void showLoading(){
+        if(!firstLoading) {
+            getView().showSwipeLoading();
+
+        }else{
+            firstLoading=false;
+        }
     }
 
     @Override
